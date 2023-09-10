@@ -1,7 +1,13 @@
+# (id 500087407)(name - sumukh srivastava)
+
 from flask import Flask, request, jsonify
-import requests
-import json
 import concurrent.futures
+
+
+import requests
+
+import json
+
 
 app = Flask(__name__)
 
@@ -11,6 +17,7 @@ def fetch_numbers(url):
         response.raise_for_status()
         data = response.json()
         return data.get('numbers', [])
+        
     except (requests.exceptions.RequestException, json.JSONDecodeError):
         return []
 
