@@ -21,14 +21,13 @@ def get_numbers():
     merged_numbers = []
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        # Fetch numbers from each URL concurrently
+        
         futures = [executor.submit(fetch_numbers, url) for url in urls]
 
         for future in concurrent.futures.as_completed(futures):
             numbers = future.result()
             merged_numbers.extend(numbers)
 
-    # Remove duplicates and sort the numbers
     merged_numbers = sorted(set(merged_numbers))
 
     return jsonify({'numbers': merged_numbers})
